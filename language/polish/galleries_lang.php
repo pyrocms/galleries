@@ -14,15 +14,15 @@ $lang['galleries.folder_error']                 = 'Katalog z galerią "%s" nie m
 $lang['galleries.delete_error']                 = 'Galeria "%s" nie mogła zostać usunięta.';
 $lang['galleries.no_galleries_error']           = 'Nie utworzono jeszcze żadnej galerii.';
 $lang['galleries.install_error']                = 'Moduł nie mógł zostać zainstalowany.';
-$lang['galleries.already_exist_error']	= 'A gallery with the slug "%s" already exist.'; #translate
-$lang['galleries.folder_duplicated_error']	= 'An error occurred! The folder already belongs to a gallery.'; #translate
-$lang['galleries.no_gallery_description']	= 'No description has been added yet.'; #translate
+$lang['galleries.already_exist_error']	        = 'Galeria "%s" już istnieje.';
+$lang['galleries.folder_duplicated_error']	= 'Wystąpił błąd! Folder już należy do galerii.';
+$lang['galleries.no_gallery_description']	= 'Nie dodano jeszcze żadnego opisu.';
 
 // Labels
 $lang['galleries.galleries_label']              = 'Galerie';
 $lang['galleries.manage_gallery_label']         = 'Zarządzaj galerią';
 
-$lang['galleries.gallery_label']			= 'Galeria';
+$lang['galleries.gallery_label']		= 'Galeria';
 $lang['galleries.num_photos_label']		= 'Liczba zdjęć';
 $lang['galleries.updated_label']		= 'Ostatnia aktualizacja';
 $lang['galleries.view_label']			= 'Zobacz';
@@ -31,13 +31,15 @@ $lang['galleries.comments_enabled_label']	= 'Tak';
 $lang['galleries.comments_disabled_label']	= 'Nie';
 $lang['galleries.published_yes_label']		= 'Tak';
 $lang['galleries.published_no_label']		= 'Nie';
-$lang['galleries.css_label']				= 'CSS';
-$lang['galleries.js_label']					= 'JavaScript';
+$lang['galleries.css_label']			= 'CSS';
+$lang['galleries.js_label']			= 'JavaScript';
 
-// General labels $lang['galleries.preview_label']			= 'Folder Images Preview'; $lang['galleries.no_thumb_label']			= 'No Thumbnail';
+// General labels
+$lang['galleries.preview_label'] 		= 'Podgląd zdjęć';
+$lang['galleries.no_thumb_label']		= 'Brak miniaturki';
 $lang['galleries.title_label']			= 'Tytuł';
 $lang['galleries.slug_label']			= 'Slug';
-$lang['galleries.folder_label']				= 'Folder'; #translate
+$lang['galleries.folder_label']			= 'Folder';
 $lang['galleries.description_label']		= 'Opis galerii';
 $lang['galleries.thumbnail_label']		= 'Miniatura';
 $lang['galleries.comments_label']		= 'Włącz komentarze';
@@ -53,6 +55,6 @@ $lang['galleries.upload_label']			= 'Wgraj zdjęcie';
 $lang['galleries.sub-galleries_label']		= 'Podgaleria';
 
 // tabs
-$lang['galleries.content_label']			= 'Gallery content'; #translate
-$lang['galleries.design_label']				= 'Design'; #translate
-$lang['galleries.script_label']				= 'Script'; #translate
+$lang['galleries.content_label']		= 'Zawartość galerii';
+$lang['galleries.design_label']			= 'Design';
+$lang['galleries.script_label']			= 'Kod';

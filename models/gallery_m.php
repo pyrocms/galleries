@@ -63,7 +63,7 @@ class Gallery_m extends MY_Model {
 			->where('galleries.published', '1');
 
 		// Where clause provided?
-		if ( ! empty($where) AND ! empty($value))
+		if ( ! empty('galleries.'.$where) AND ! empty($value))
 		{
 			$this->db->where($where, $value);
 		}

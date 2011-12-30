@@ -65,7 +65,7 @@ class Gallery_m extends MY_Model {
 		// Where clause provided?
 		if ( ! empty($where) AND ! empty($value))
 		{
-			$this->db->where($where, $value);
+			$this->db->where('galleries.'.$where, $value);
 		}
 
 		return $this->db->get()->result();

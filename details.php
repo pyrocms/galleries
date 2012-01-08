@@ -2,7 +2,7 @@
 
 class Module_Galleries extends Module {
 
-	public $version = '1.1';
+	public $version = '1.2';
 
 	public function info()
 	{
@@ -27,7 +27,7 @@ class Module_Galleries extends Module {
 			),
 			'description' => array(
 				'sl' => 'Modul galerije vam omogoča da ustvarite albume vaših slik.',
-				'en' => 'The galleries module is a powerful module that lets users create image galleries.',
+				'en' => 'The galleries module is a simple module that lets users display images from Files.',
 				'el' => 'Παρέχει την δυνατότητα στους χρήστες να δημιουργούν άλμπουμ εικόνων.',
 				'de' => 'Mit dem Galerie Modul kannst du Bildergalerien anlegen.',
 				'pl' => 'Moduł pozwalający tworzyć galerie zdjęć.',

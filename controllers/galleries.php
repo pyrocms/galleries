@@ -58,7 +58,7 @@ class Galleries extends Public_Controller
 
 		$gallery		= $this->gallery_m->get_by('slug', $slug) or show_404();
 		$gallery_images	= $this->gallery_image_m->get_images_by_gallery($gallery->id);
-		$sub_galleries	= $this->gallery_m->get_all_with_filename('parent_id', $gallery->folder_id);
+		$sub_galleries	= $this->gallery_m->get_all_with_filename('file_folders.parent_id', $gallery->folder_id);
         if($gallery->css) {
             $this->template->append_metadata('<style type="text/css">' . PHP_EOL . $gallery->css . PHP_EOL . '</style>');
         }

@@ -56,30 +56,9 @@
 	
 					<li class="thumbnail-manage <?php echo alternator('', 'even'); ?>">
 						<label for="gallery_thumbnail"><?php echo lang('galleries.thumbnail_label'); ?></label>
-						<div class="input"><select name="gallery_thumbnail" id="gallery_thumbnail">
-	
-							<?php if ( ! empty($gallery->thumbnail_id) ): ?>
-							<!-- Current thumbnail -->
-							<optgroup label="Current">
-								<?php foreach ( $gallery_images as $image ): if ( $image->file_id == $gallery->thumbnail_id ): ?>
-								<option value="<?php echo $gallery->thumbnail_id; ?>">
-									<?php echo $image->name; ?>
-								</option>
-								<?php break; endif; endforeach; ?>
-							</optgroup>
-							<?php endif; ?>
-	
-							<!-- Available thumbnails -->
-							<optgroup label="Thumbnails">
-								<option value="0"><?php echo lang('galleries.no_thumb_label'); ?></option>
-								<?php foreach ( $gallery_images as $image ): ?>
-								<option value="<?php echo $image->file_id; ?>">
-									<?php echo $image->name; ?>
-								</option>
-								<?php endforeach; ?>
-							</optgroup>
-	
-						</select></div>
+						<div class="input">
+							<?php echo form_dropdown('gallery_thumbnail', array(0 => lang('galleries.no_thumb_label')) + $thumbnails, $gallery->thumbnail_id, 'id="gallery_thumbnail"'); ?>
+						</div>
 					</li>
 					
 					<?php if (isset($gallery_images) && $gallery_images): ?>

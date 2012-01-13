@@ -54,6 +54,10 @@ class Admin extends Admin_Controller
 			'rules'	=> 'trim'
 		),
 		array(
+			'field' => 'thumbnail_id',
+			'rules'	=> 'trim'
+		),
+		array(
 			'field'	=> 'css',
 			'label'	=> 'lang:galleries.css_label',
 			'rules'	=> 'trim'
@@ -185,6 +189,7 @@ class Admin extends Admin_Controller
 			->append_metadata( $this->load->view('fragments/wysiwyg', $this->data, TRUE) )
 			->set('gallery',		$gallery)
 			->set('folders_tree',	$folders_tree)
+			->set('thumbnails', 	array())
 			->build('admin/form');
 	}
 
@@ -217,6 +222,7 @@ class Admin extends Admin_Controller
 		$galleries 		= $this->gallery_m->get_all();
 		$gallery 		= $this->gallery_m->get($id);
 		$gallery_images = $this->gallery_image_m->get_images_by_gallery($id);
+		$thumbnails		= $this->gallery_image_m->where('gallery_images.gallery_id', $id)->dropdown('files.id', 'files.name');
 
 		if (empty($gallery))
 		{
@@ -261,6 +267,7 @@ class Admin extends Admin_Controller
 			->set('gallery',		$gallery)
 			->set('galleries',		$galleries)
 			->set('gallery_images',	$gallery_images)
+			->set('thumbnails',		$thumbnails)
 			->set('folders_tree',	$folders_tree)
 			->build('admin/form');
 	}

@@ -223,4 +223,36 @@ class Gallery_image_m extends MY_Model
 		}
 	}
 	
+	/**
+	 * Dropdown
+	 *
+	 * @param string $key
+	 * @param string $value
+	 * @return mixed
+	 */
+	public function dropdown($key, $value)
+	{
+		$dropdown = array();
+
+		$query = $this->select(array($key, $value))
+			->join('files', 'files.id = gallery_images.file_id', 'left')
+			->get_all();
+				
+		if ( count($query) > 0 )
+		{
+			if (strpos($key, '.')) $key = substr($key, (strpos($key, '.') + 1));
+			if (strpos($value, '.')) $value = substr($value, (strpos($value, '.') + 1));
+
+			foreach ($query AS $thumbnail) 
+			{
+				$dropdown[$thumbnail->{$key}] = $thumbnail->{$value};
+			}
+
+			return $dropdown;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 }

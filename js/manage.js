@@ -68,9 +68,7 @@ jQuery(function($){
 				if (data.images) {
 					
 					$('#gallery_thumbnail').append(
-						'<optgroup label="Thumbnails">'+
-							'<option selected value="0">No Thumbnail</option>'+
-						'</optgroup>'
+						'<option value="">No Thumbnail</option>'
 					);
 					
 					$.each(data.images, function(i, image){
@@ -80,11 +78,14 @@ jQuery(function($){
 						'</li>'
 						);
 						
-						$('#gallery_thumbnail optgroup[label="Thumbnails"]').append(
-						'<option value="' + image.id + '">' + image.name + '</option>'
+						$('#gallery_thumbnail').append(
+							'<option value="' + image.id + '">' + image.name + '</option>'
 						);
 					});
 					$('.images-placeholder').slideDown();
+
+					// update chosen after adding the thumbnails in
+					$('#gallery_thumbnail').trigger('liszt:updated');
 				}
 			}
 			else {

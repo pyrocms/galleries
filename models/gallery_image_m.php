@@ -73,21 +73,22 @@ class Gallery_image_m extends MY_Model
 
 	public function set_new_image_files($gallery_id = 0)
 	{
-		$this->db
-			// Select fields on files table
-			->select('files.id as file_id, galleries.id as gallery_id')
-			->from('files')
-			// Set my gallery by id
-			->where('galleries.id', $gallery_id)
-			// Filter from my gallery folder
-			->join('galleries', 'galleries.folder_id = files.folder_id', 'left')
-			// Filter files type image
-			->where('files.type', 'i')
-			// Not require image from my gallery in gallery images, prevent duplication
-			->ar_where[] = "AND `" . $this->db->dbprefix('files') . "`.`id` NOT IN (SELECT file_id FROM (" . $this->db->dbprefix('gallery_images') . ") WHERE `gallery_id` = '$gallery_id')";
+		$files = $this->db->query("
+	            SELECT `" . $this->db->dbprefix('files') . "`.`id` as file_id, 
+	                   `" . $this->db->dbprefix('galleries') . "`.`id` as gallery_id 
+	            FROM " . $this->db->dbprefix('files') . "
+	            LEFT JOIN " . $this->db->dbprefix('galleries') . " 
+	                ON `" . $this->db->dbprefix('galleries') . "`.`folder_id` = `" . $this->db->dbprefix('files') . "`.`folder_id`
+	            WHERE `" . $this->db->dbprefix('galleries') . "`.`id` = " . $this->db->escape($gallery_id) . "            
+	                AND `" . $this->db->dbprefix('files') . "`.`type` = 'i'
+	                AND `" . $this->db->dbprefix('files') . "`.`id` 
+	                    NOT IN (SELECT file_id 
+	                            FROM (" . $this->db->dbprefix('gallery_images') . ") 
+	                            WHERE `gallery_id` = '$gallery_id')
+	        ");		
 
 		// Already updated, nothing to do here..
-		if ( ! $new_images = $this->db->get()->result())
+		if ( ! $new_images = $files->result())
 		{
 			return FALSE;
 		}

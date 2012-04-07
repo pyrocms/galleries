@@ -184,8 +184,8 @@ class Admin extends Admin_Controller
 
 		$this->template
 			->title($this->module_details['name'], lang('galleries.new_gallery_label'))
-			->append_metadata( css('galleries.css', 'galleries') )
-			->append_metadata( js('manage.js', 'galleries') )
+			->append_metadata( Asset::css('module::galleries.css', 'galleries') )
+			->append_metadata( Asset::js('module::manage.js', 'galleries') )
 			->append_metadata( $this->load->view('fragments/wysiwyg', $this->data, TRUE) )
 			->set('gallery',		$gallery)
 			->set('folders_tree',	$folders_tree)
@@ -261,8 +261,8 @@ class Admin extends Admin_Controller
 
 		$this->template
 			->title($this->module_details['name'], sprintf(lang('galleries.manage_gallery_label'), $gallery->title))
-			->append_metadata( css('galleries.css', 'galleries') )
-		   	->append_metadata( js('manage.js', 'galleries') )
+			->append_metadata( Asset::css('module::galleries.css', 'galleries') )
+		   	->append_metadata( Asset::js('module::manage.js', 'galleries') )
 			->append_metadata( $this->load->view('fragments/wysiwyg', $this->data, TRUE) )
 			->set('gallery',		$gallery)
 			->set('galleries',		$galleries)

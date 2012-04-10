@@ -77,40 +77,37 @@ class Gallery_image_m extends MY_Model
 			// Select fields on files table
 			->select('files.id as file_id, galleries.id as gallery_id')
 			->from('files')
-			// Set my gallery by id
-			->where('galleries.id', $gallery_id)
 			// Filter from my gallery folder
 			->join('galleries', 'galleries.folder_id = files.folder_id', 'left')
-			// Filter files type image
-			->where('files.type', 'i')
-			// Not require image from my gallery in gallery images, prevent duplication
-			->ar_where[] = "AND `" . $this->db->dbprefix('files') . "`.`id` NOT IN (SELECT file_id FROM (" . $this->db->dbprefix('gallery_images') . ") WHERE `gallery_id` = '$gallery_id')";
+			// Join with the existing
+			->join('gallery_images', 'gallery_images.file_id = files.id', 'left')
+			// Set my gallery by id
+			->where(array('files.type' => 'i', 'galleries.id' => $gallery_id))
+			// This will be one frustrated join. Sorry pal!
+			->where('gallery_images.file_id IS NULL', null, FALSE);
 
 		// Already updated, nothing to do here..
-		if ( ! $new_images = $this->db->get()->result())
+		if ( ! $new_images = $this->db->get()->result_array())
 		{
 			return FALSE;
 		}
 
-		// Get the last position of order count
-		$last_image = $this->db
-			->select('`order`')
-			->order_by('`order`', 'desc')
-			->limit(1)
-			->get_where('gallery_images', array('gallery_id' => $gallery_id))
-			->row();
-
-		$order = isset($last_image->order) ? $last_image->order + 1: 1;
-
+		// Get the max order
+		$max_order = $this->db
+			->select_max('`order`')
+			->get_where('gallery_images', array('gallery_id' => $gallery_id))->row();
+		
 		// Insert new images, increasing the order
-		foreach ($new_images as $new_image)
+		$insert_images = array();
+
+		foreach ($new_images as &$new_image)
 		{
-			$this->db->insert('gallery_images', array(
-				'gallery_id'	=> $new_image->gallery_id,
-				'file_id'		=> $new_image->file_id,
-				'`order`'		=> $order++
-			));
+			$new_image['order'] = ++$max_order->order;
 		}
+		
+		unset($new_image);
+
+		$this->db->insert_batch('gallery_images', $new_images);
 
 		return TRUE;
 	}

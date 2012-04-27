@@ -2,7 +2,7 @@
 
 class Module_Galleries extends Module {
 
-	public $version = '1.2';
+	public $version = '2.0';
 
 	public function info()
 	{
@@ -62,41 +62,35 @@ class Module_Galleries extends Module {
 		$this->dbforge->drop_table('galleries');
 		$this->dbforge->drop_table('gallery_images');
 
-		$galleries = "
-			CREATE TABLE ".$this->db->dbprefix('galleries')." (
-			  `id` int(11) NOT NULL AUTO_INCREMENT,
-			  `title` varchar(255) NOT NULL,
-			  `slug` varchar(255) NOT NULL,
-			  `folder_id` int(11) NOT NULL,
-			  `thumbnail_id` int(11) DEFAULT NULL,
-			  `description` text,
-			  `updated_on` int(15) NOT NULL,
-			  `preview` varchar(255) DEFAULT NULL,
-			  `enable_comments` int(1) DEFAULT NULL,
-			  `published` int(1) DEFAULT NULL,
-			  `css` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-			  `js` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-			  PRIMARY KEY (`id`),
-			  UNIQUE KEY `slug` (`slug`),
-			  UNIQUE KEY `thumbnail_id` (`thumbnail_id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8
-		";
+        $tables = array(
+            'galleries' => array(
+                'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => true, 'primary' => true),
+                'slug' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => false, 'unique' => true, 'key' => true),
+                'title' => array('type' => 'VARCHAR', 'constraint' => 255, 'null' => false),
+                'folder_id' => array('type' => 'INT', 'constraint' => 11, 'null' => false),
+                'thumbnail_id' => array('type' => 'INT', 'constraint' => 11, 'default' => null, 'unique' => true, 'key' => true),
+                'description' => array('type' => 'TEXT'),
+                'updated_on' => array('type' => 'INT', 'constraint' => 15, 'null' => false),
+                'preview' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => null),
+                'enable_comments' => array('type' => 'INT', 'constraint' => 1, 'default' => null),
+                'published' => array('type' => 'INT', 'constraint' => 1, 'default' => null),
+                'css' => array('type' => 'TEXT', 'null' => true),
+                'js' => array('type' => 'TEXT', 'null' => true),
+            ),
+            'gallery_images' => array(
+                'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => true, 'primary' => true),
+                'file_id' => array('type' => 'INT', 'constraint' => 11, 'null' => false),
+                'gallery_id' => array('type' => 'INT', 'constraint' => 11, 'null' => false, 'key' => true),
+                'order' => array('type' => 'INT', 'constraint' => 11, 'default' => 0),
+            ),
+        );
 
-		$gallery_images = "
-			CREATE TABLE ".$this->db->dbprefix('gallery_images')." (
-			  `id` int(11) NOT NULL AUTO_INCREMENT,
-			  `file_id` int(11) NOT NULL,
-			  `gallery_id` int(11) NOT NULL,
-			  `order` int(11) DEFAULT '0',
-			  PRIMARY KEY (`id`),
-			  KEY `gallery_id` (`gallery_id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8
-		";
+        if ( ! $this->install_tables($tables))
+        {
+            return false;
+        }
 
-		if($this->db->query($galleries) && $this->db->query($gallery_images))
-		{
-			return TRUE;
-		}
+        return true;
 	}
 
 	public function uninstall()

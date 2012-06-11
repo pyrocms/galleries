@@ -57,7 +57,13 @@
 					<li class="thumbnail-manage <?php echo alternator('', 'even'); ?>">
 						<label for="gallery_thumbnail"><?php echo lang('galleries.thumbnail_label'); ?></label>
 						<div class="input">
-							<?php echo form_dropdown('gallery_thumbnail', array(0 => lang('galleries.no_thumb_label')) + $thumbnails, $gallery->thumbnail_id, 'id="gallery_thumbnail"'); ?>
+							<?php 
+								if( empty($thumbnails) ) {
+									echo lang('galleries.no_images_error');
+								} else {
+									echo form_dropdown('gallery_thumbnail', array(0 => lang('galleries.no_thumb_label')) + $thumbnails, $gallery->thumbnail_id, 'id="gallery_thumbnail"'); 
+								}
+							?>
 						</div>
 					</li>
 					

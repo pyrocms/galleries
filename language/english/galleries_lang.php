@@ -17,6 +17,7 @@ $lang['galleries.install_error']		= 'The module could not be installed.';
 $lang['galleries.already_exist_error']	= 'A gallery with the slug "%s" already exist.';
 $lang['galleries.folder_duplicated_error']	= 'An error occurred! The folder already belongs to a gallery.';
 $lang['galleries.no_gallery_description']	= 'No description has been added yet.';
+$lang['galleries.no_images_error']		= 'The gallery is empty.';
 
 // Labels
 $lang['galleries.galleries_label']			= 'Galleries';

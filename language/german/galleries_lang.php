@@ -17,6 +17,7 @@ $lang['galleries.install_error']		= 'Das Modul konnte nicht installiert werden.'
 $lang['galleries.already_exist_error']	= 'Eine Galerie mit dem Titel "%s" existiert bereits.';
 $lang['galleries.folder_duplicated_error']	= 'Ein Fehler ist aufgetreten! Das Verzeichnis gehört bereits zu einer Galerie.';
 $lang['galleries.no_gallery_description']	= 'Es wurde bis jetzt noch keine Beschreibung hinzugefügt.';
+$lang['galleries.no_images_error']		= 'Die Galerie enthält keine Bilder.';
 
 // Labels
 $lang['galleries.galleries_label']			= 'Galerien';

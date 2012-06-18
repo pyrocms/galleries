@@ -58,7 +58,7 @@
 						<label for="gallery_thumbnail"><?php echo lang('galleries.thumbnail_label'); ?></label>
 						<div class="input">
 							<?php
-								if( empty($thumbnails) )
+								if(empty($thumbnails))
 								{
 									echo lang('galleries.no_images_error');
 								} 

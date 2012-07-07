@@ -21,7 +21,9 @@
 		</div>
 		
 	</div>
-	<?php endif; endforeach; else: ?>
+	<?php endif; endforeach;
+		echo $this->pagination->create_links();
+	 else: ?>
 		
 	<p><?php echo lang('galleries.no_galleries_error'); ?></p>
 	

@@ -12,6 +12,11 @@
  */
 class Gallery_m extends MY_Model {
 
+	public function tot_galleries(){
+	
+		return $this->db->count_all_results('galleries');
+	}
+
 	/**
 	 * Get all galleries along with the total number of photos in each gallery
 	 *
@@ -52,11 +57,11 @@ class Gallery_m extends MY_Model {
 	 * @access public
 	 * @return mixed
 	 */
-	public function get_all_with_filename($where = NULL, $value = NULL)
+	public function get_all_with_filename($where = NULL, $value = NULL, $num = NULL, $offset = NULL)
 	{
 		$this->db
 			->select('galleries.*, files.filename, files.extension, files.id as file_id, file_folders.parent_id as parent')
-			->from('galleries')
+			
 			->join('gallery_images', 'gallery_images.file_id = galleries.thumbnail_id', 'left')
 			->join('files', 'files.id = gallery_images.file_id', 'left')
 			->join('file_folders', 'file_folders.id = galleries.folder_id', 'left')
@@ -67,8 +72,13 @@ class Gallery_m extends MY_Model {
 		{
 			$this->db->where($where, $value);
 		}
+		
+		if( $num!=NULL or $offset!=NULL)
+		{
+			return $this->db->get('galleries',$num,$offset)->result();
+		}			
 
-		return $this->db->get()->result();
+		return $this->db->get('galleries')->result();
 	}
 
 	/**

@@ -28,6 +28,9 @@ class Galleries extends Public_Controller
 		$this->lang->load('galleries');
 		$this->lang->load('gallery_images');
 		$this->load->helper('html');
+		
+		//Load pagination library
+		$this->load->library('pagination');
 	}
 	
 	/**
@@ -38,11 +41,27 @@ class Galleries extends Public_Controller
 	 */
 	public function index()
 	{
-		$data->galleries = $this->gallery_m->get_all_with_filename();
-
+ 		
+		//Get the total number of the galleries
+		$tot_galleries = $this->gallery_m->tot_galleries();
+		
+		//Pagination config
+    	$config['base_url'] = base_url().'galleries/index/';
+		$config['total_rows'] = $tot_galleries;
+		$config['per_page'] = Settings::get('per_page');
+		$config['uri_segment'] = 3;		               		
+		               
+		//Get galleries
+		$galleries = $this->gallery_m->get_all_with_filename(NULL,NULL,$config['per_page'],$this->uri->segment(3));
+		
+		//Initialize
+		$this->pagination->initialize($config);
+		
+		//Template
 		$this->template
 			->title($this->module_details['name'])
-			->build('index', $data);
+			->set('galleries', $galleries)
+			->build('index');
 	}
 	
 	/**
@@ -55,6 +74,9 @@ class Galleries extends Public_Controller
 	public function gallery($slug = NULL)
 	{
 		$slug or show_404();
+		
+		//Get the total number of the galleries
+		$tot_galleries = $this->gallery_m->tot_galleries();
 
 		$gallery		= $this->gallery_m->get_by('slug', $slug) or show_404();
 		$gallery_images	= $this->gallery_image_m->get_images_by_gallery($gallery->id);
@@ -66,11 +88,13 @@ class Galleries extends Public_Controller
             $this->template->append_metadata('<script type="text/javascript">' . PHP_EOL . $gallery->js . PHP_EOL . '</script>');
         }
         
-		$this->template->build('gallery', array(
-			'gallery'			=> $gallery,
-			'gallery_images'	=> $gallery_images,
-			'sub_galleries'		=> $sub_galleries
-		));
+		$this->template
+				
+			->build('gallery', array(
+				'gallery'			=> $gallery,
+				'gallery_images'	=> $gallery_images,
+				'sub_galleries'		=> $sub_galleries
+			));
 	}
 	
 	/**

@@ -24,6 +24,8 @@
 $route['galleries/admin(:any)?'] 	= 'admin$1';
 
 // Rewrite the URLs
+$route['galleries/index']			= 'galleries';
+$route['galleries/index/(:any)']	= 'galleries/index/$1';
 $route['galleries/(:any)/(:num)'] 	= 'galleries/image/$1/$2';
 $route['galleries/(:any)'] 			= 'galleries/gallery/$1';
 ?>

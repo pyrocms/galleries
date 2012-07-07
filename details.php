@@ -2,7 +2,7 @@
 
 class Module_Galleries extends Module {
 
-	public $version = '1.2';
+	public $version = '1.3';
 
 	public function info()
 	{
@@ -92,8 +92,10 @@ class Module_Galleries extends Module {
 			  KEY `gallery_id` (`gallery_id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8
 		";
+		
+		$gallery_settings = "INSERT INTO `".$this->db->dbprefix('settings')."` (`slug`, `title`, `description`, `type`, `default`, `value`, `options`, `is_required`, `is_gui`, `module`, `order`) VALUES ('per_page', 'Per page', 'You can set the number of galleries to show in a single page', 'text', '10', '', '', '1', '1', 'galleries', '1001');";
 
-		if($this->db->query($galleries) && $this->db->query($gallery_images))
+		if($this->db->query($galleries) && $this->db->query($gallery_images) && $this->db->query($gallery_settings) )
 		{
 			return TRUE;
 		}
@@ -101,8 +103,9 @@ class Module_Galleries extends Module {
 
 	public function uninstall()
 	{
+		$sql_settings = "DELETE FROM ".$this->db->dbprefix('settings')." WHERE slug = 'per_page' ";
 		if($this->dbforge->drop_table('galleries') &&
-		   $this->dbforge->drop_table('gallery_images'))
+		   $this->dbforge->drop_table('gallery_images') && $this->db->query($sql_settings) )
 		{
 			return TRUE;
 		}
@@ -111,7 +114,6 @@ class Module_Galleries extends Module {
 
 	public function upgrade($old_version)
 	{
-		// Your Upgrade Logic
 		return TRUE;
 	}
 

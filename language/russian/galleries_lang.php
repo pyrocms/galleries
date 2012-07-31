@@ -51,7 +51,7 @@ $lang['galleries.description_label']					= 'Описание альбома';
 $lang['galleries.thumbnail_label']						= 'Миниатюра';
 $lang['galleries.comments_label']							= 'Разрешить комментарии';
 $lang['galleries.published_label']						= 'Опубликована';
-$lang['galleries.current_label']							= 'Изображения в галерее (нажмите и перетащите для сортировки, кликните для редактирования)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // подписи в sidebar
 $lang['galleries.list_label']									= 'Список галерей';

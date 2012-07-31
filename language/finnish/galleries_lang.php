@@ -51,7 +51,7 @@ $lang['galleries.description_label']		= 'Albumin kuvaus';
 $lang['galleries.thumbnail_label']			= 'Esikatselu';
 $lang['galleries.comments_label']			= 'Kommentit päälle';
 $lang['galleries.published_label']			= 'Julkaistu';
-$lang['galleries.current_label']			= 'Nykyiset kuvat (raahaa järjestelläksesi, klikkaa muokataksesi)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Listaa galleriat';

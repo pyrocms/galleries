@@ -45,7 +45,7 @@ $lang['galleries.description_label']		= 'Album Description';
 $lang['galleries.thumbnail_label']			= 'Thumbnail';
 $lang['galleries.comments_label']			= 'Enable Comments';
 $lang['galleries.published_label']			= 'Published';
-$lang['galleries.current_label']			= 'Current Images (drag and drop to sort, click to edit)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)';
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'List Galleries';

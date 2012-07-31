@@ -42,7 +42,7 @@ $lang['galleries.description_label']		= 'Album Beschrijving';
 $lang['galleries.thumbnail_label']			= 'Miniatuur';
 $lang['galleries.comments_label']			= 'Activeer Reacties';
 $lang['galleries.published_label']			= 'Gepubliceerd';
-$lang['galleries.current_label']			= 'Huidige Afbeeldingen (sleep om te sorteren, klik om te wijzigen)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Overzicht gallerijen';

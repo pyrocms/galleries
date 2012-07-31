@@ -42,7 +42,7 @@ $lang['galleries.description_label']		= 'Descrição do álbum';
 $lang['galleries.thumbnail_label']			= 'Miniatura';
 $lang['galleries.comments_label']			= 'Ativar comentários';
 $lang['galleries.published_label']			= 'Publicada';
-$lang['galleries.current_label']			= 'Imagens atuais (arraste e solte para organizar, clique para editar)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Listar galerias';

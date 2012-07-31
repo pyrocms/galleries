@@ -44,7 +44,7 @@ $lang['galleries.description_label']		= 'Popis alba';
 $lang['galleries.thumbnail_label']			= 'Náhled';
 $lang['galleries.comments_label']			= 'Povolit komentáře';
 $lang['galleries.published_label']			= 'Publikováno';
-$lang['galleries.current_label']			= 'Současné obrázky (řazení přetahováním myší, klikněte na obrázek pro úpravy)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Seznam galerií';

@@ -42,7 +42,7 @@ $lang['galleries.description_label'] 		= 'Description de l\'album';
 $lang['galleries.thumbnail_label'] 			= 'Vignette';
 $lang['galleries.comments_label'] 			= 'Activer les commentaires';
 $lang['galleries.published_label']			= 'Publié';
-$lang['galleries.current_label'] 			= 'Images courantes (glisser-déposer pour ordonner, cliquer pour modifier)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label'] 				= 'Lister les galeries';

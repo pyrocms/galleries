@@ -42,7 +42,7 @@ $lang['galleries.description_label']		= '相本說明';
 $lang['galleries.thumbnail_label']			= '縮圖';
 $lang['galleries.comments_label']			= '開啟回應';
 $lang['galleries.published_label']			= '已發佈';
-$lang['galleries.current_label']			= '目前圖片 (使用拖放排序，點選編輯)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= '畫本列表';

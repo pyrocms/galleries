@@ -43,7 +43,7 @@ $lang['galleries.description_label']		= 'Descripción del Álbum';
 $lang['galleries.thumbnail_label']			= 'Miniatura';
 $lang['galleries.comments_label']			= 'Habilitar Comentarios';
 $lang['galleries.published_label']			= 'Publicado';
-$lang['galleries.current_label']			= 'Imágenes (arrastre y suelte para ordenar, click para editar)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 # Sidebar labels
 $lang['galleries.list_label']				= 'Lista de Galerías';

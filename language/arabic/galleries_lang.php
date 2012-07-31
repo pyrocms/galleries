@@ -42,7 +42,7 @@ $lang['galleries.description_label']		= 'وصْف الألبوم';
 $lang['galleries.thumbnail_label']			= 'مُصغّر';
 $lang['galleries.comments_label']			= 'تمكين التعليقات';
 $lang['galleries.published_label']			= 'منشور';
-$lang['galleries.current_label']			= 'الصّوَر الحاليّة (حرك الصّور لإعادة ترتيبها، واضغط على أي صورة لتعديلها).';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'سرْد معارض الصّور';

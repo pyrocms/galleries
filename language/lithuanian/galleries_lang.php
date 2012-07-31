@@ -42,7 +42,7 @@ $lang['galleries.description_label']		= 'Albumo aprašymas';
 $lang['galleries.thumbnail_label']			= 'Miniatiūros';
 $lang['galleries.comments_label']			= 'Komentarai įjungti';
 $lang['galleries.published_label']			= 'Publikuojama';
-$lang['galleries.current_label']			= 'Dabartinis paveikslėlis (drag and drop to sort, click to edit)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Galerijų sąrašas';

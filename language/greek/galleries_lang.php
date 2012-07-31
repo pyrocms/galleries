@@ -44,7 +44,7 @@ $lang['galleries.description_label']		= 'Περιγραφή Άλμπουμ';
 $lang['galleries.thumbnail_label']			= 'Μικρογραφία';
 $lang['galleries.comments_label']			= 'Ενεργοποίηση Σχολίων';
 $lang['galleries.published_label']			= 'Δημοσιευμένη';
-$lang['galleries.current_label']			= 'Τρέχουσες Εικόνες (σύρτε και αφήστε για να ταξινομήσετε, κάντε κλικ για επεξεργασία)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Λίστα Γκαλερί';

@@ -43,7 +43,7 @@ $lang['galleries.description_label']		= 'Opis albuma';
 $lang['galleries.thumbnail_label']			= 'Mala slika';
 $lang['galleries.comments_label']			= 'Omogoči komentarje';
 $lang['galleries.published_label']			= 'Objavljeno';
-$lang['galleries.current_label']			= 'Trenutne slike (primi in prestavi za urejanje pozicije, klikni za urejanje)';
+$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
 
 // Sidebar labels
 $lang['galleries.list_label']				= 'Seznam galerij';

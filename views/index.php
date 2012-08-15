@@ -2,7 +2,7 @@
 
 <div class="galleries_container" id="gallery_index">
 	
-	<?php if ( ! empty($galleries)): foreach ($galleries as $gallery): if (empty($gallery->parent)): ?>
+	<?php if ( ! empty($galleries)): foreach ($galleries as $gallery): if (!empty($gallery->parent)): ?>
 	<div class="gallery clearfix">
 
 		<div class="gallery_heading">

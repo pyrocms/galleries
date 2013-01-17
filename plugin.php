@@ -73,6 +73,49 @@ class Plugin_Galleries extends Plugin
 
 		return (int) ($slug ? $this->gallery_m->count_by('slug', $slug) > 0 : FALSE);
 	}
+	
+	
+	/**
+	 * Gallery List
+	 * 
+	 * Creates a list of galleries
+	 * 
+	 * Usage:
+	 * 
+	 * {{ galleries:listing limit="5" }}
+	 * 	<a href="{{ url:base }}galleries/{{ slug }}/{{ id }}" title="{{ name }}">
+	 * 		<img src="{{ url:site }}files/thumb/{{ file_id }}/75/75" alt="{{ description }}"/>
+	 * 	</a>
+	 * {{ /galleries:listing }}
+	 * 
+	 * The following is a list of tags that are available to use from this method
+	 * 
+	 * 	{{ id }}
+	 * 	{{ title }}
+	 * 	{{ slug }}
+	 * 	{{ folder_id }}
+	 * 	{{ thumbnail_id }}
+	 * 	{{ description }}
+	 * 	{{ filename }}
+	 * 	{{ extension }}
+	 * 
+	 * @return	array
+	 */
+	function listing()
+	{
+		$limit	= $this->attribute('limit');
+		$offset = $this->attribute('offset');
+		
+		$this->load->model(array(
+			'gallery_m'
+		));
+
+
+		$galleries = $this->gallery_m->get_all_with_filename(NULL,NULL,$limit);
+		
+		
+		return $galleries ? $galleries : array();
+	}
 }
 
 /* End of file plugin.php */

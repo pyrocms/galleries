@@ -7,6 +7,7 @@
 </section>
 
 <section class="item">
+	<div class="content">
 	
 	<?php echo form_open(uri_string(), 'class="crud"', array('folder_id' => $gallery->folder_id)); ?>
 	
@@ -142,7 +143,7 @@
 		</div>
 	
 	<?php echo form_close(); ?>
-	
+	</div>
 	<script type="text/javascript">
 	css_editor('css_editor', '100%');
 	js_editor('js_editor', '100%');

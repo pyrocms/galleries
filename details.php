@@ -85,7 +85,7 @@ class Module_Galleries extends Module {
 		$gallery_images = "
 			CREATE TABLE ".$this->db->dbprefix('gallery_images')." (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
-			  `file_id` int(11) NOT NULL,
+			  `file_id` char(15) COLLATE utf8_unicode_ci NOT NULL,
 			  `gallery_id` int(11) NOT NULL,
 			  `order` int(11) DEFAULT '0',
 			  PRIMARY KEY (`id`),

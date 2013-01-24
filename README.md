@@ -15,7 +15,7 @@ In this new version has been added the pagination for the galleries, you can cho
 
 ## Installation
 
-Just upload the zip via Control Panel or FTP the folder in /addons/default/ or in /addons/shared_addons/ folder.
+Just upload the zip via Control Panel or FTP the folder in /addons/default/modules/ or in /addons/shared_addons/modules/ folder.
 
 
 ## Thanks

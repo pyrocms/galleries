@@ -68,7 +68,7 @@ class Module_Galleries extends Module {
 			  `title` varchar(255) NOT NULL,
 			  `slug` varchar(255) NOT NULL,
 			  `folder_id` int(11) NOT NULL,
-			  `thumbnail_id` int(11) DEFAULT NULL,
+			  `thumbnail_id` char(15) DEFAULT NULL,
 			  `description` text,
 			  `updated_on` int(15) NOT NULL,
 			  `preview` varchar(255) DEFAULT NULL,
@@ -79,7 +79,7 @@ class Module_Galleries extends Module {
 			  PRIMARY KEY (`id`),
 			  UNIQUE KEY `slug` (`slug`),
 			  UNIQUE KEY `thumbnail_id` (`thumbnail_id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 		";
 
 		$gallery_images = "
@@ -90,9 +90,9 @@ class Module_Galleries extends Module {
 			  `order` int(11) DEFAULT '0',
 			  PRIMARY KEY (`id`),
 			  KEY `gallery_id` (`gallery_id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 		";
-		
+
 		$gallery_settings = "INSERT INTO `".$this->db->dbprefix('settings')."` (`slug`, `title`, `description`, `type`, `default`, `value`, `options`, `is_required`, `is_gui`, `module`, `order`) VALUES ('per_page', 'Per page', 'You can set the number of galleries to show in a single page', 'text', '10', '', '', '1', '1', 'galleries', '1001');";
 
 		if($this->db->query($galleries) && $this->db->query($gallery_images) && $this->db->query($gallery_settings) )

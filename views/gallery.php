@@ -49,5 +49,9 @@
 <br style="clear: both;" />
 
 <?php if ($gallery->enable_comments == 1): ?>
-	<?php echo display_comments($gallery->id);?>
+	<div id="existing-comments">
+		<h4><?php echo lang('comments:title') ?></h4>
+		<?php echo $this->comments->display() ?>
+	</div>
+	<?php echo $this->comments->form(); ?>
 <?php endif; ?>

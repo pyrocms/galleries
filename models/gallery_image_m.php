@@ -35,7 +35,7 @@ class Gallery_image_m extends MY_Model
 	public function get_images_by_gallery($id, $options = array())
 	{
 		// Find new images on files
-		$this->set_new_image_files($id);
+		$this->set_new_image_files($id);	
 
 		// Clear old files on images
 		$this->unset_old_image_files($id);
@@ -85,17 +85,17 @@ class Gallery_image_m extends MY_Model
 			->where(array('files.type' => 'i', 'galleries.id' => $gallery_id))
 			// This will be one frustrated join. Sorry pal!
 			->where('gallery_images.file_id IS NULL', null, FALSE);
-
+	
 		// Already updated, nothing to do here..
 		if ( ! $new_images = $this->db->get()->result_array())
 		{
 			return FALSE;
-		}
+		}	
 
 		// Get the max order
 		$max_order = $this->db
 			->select_max('`order`')
-			->get_where('gallery_images', array('gallery_id' => $gallery_id))->row();
+			->get_where('gallery_images', array('gallery_id' => $gallery_id))->row();		
 		
 		// Insert new images, increasing the order
 		$insert_images = array();
@@ -103,12 +103,12 @@ class Gallery_image_m extends MY_Model
 		foreach ($new_images as &$new_image)
 		{
 			$new_image['order'] = ++$max_order->order;
-		}
+		}				
 		
 		unset($new_image);
 
 		$this->db->insert_batch('gallery_images', $new_images);
-
+		
 		return TRUE;
 	}
 

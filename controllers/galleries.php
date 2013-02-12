@@ -88,6 +88,14 @@ class Galleries extends Public_Controller
             $this->template->append_metadata('<script type="text/javascript">' . PHP_EOL . $gallery->js . PHP_EOL . '</script>');
         }
         
+        $this->load->library('comments/comments', array(
+				'entry_id' => $gallery->id,
+				'entry_title' => $gallery->title,
+				'module' => 'galleries',
+				'singular' => 'gallery',
+				'plural' => 'galleries',
+			));
+        
 		$this->template
 				
 			->build('gallery', array(
@@ -120,6 +128,14 @@ class Galleries extends Public_Controller
 		{
 			show_404();
 		}
+		
+		 $this->load->library('comments/comments', array(
+				'entry_id' => $gallery_image->id,
+				'entry_title' => $gallery->title,
+				'module' => 'galleries',
+				'singular' => 'gallery',
+				'plural' => 'galleries',
+			));
 		
 		$this->template->build('image', array(
 			'gallery'		=> $gallery,

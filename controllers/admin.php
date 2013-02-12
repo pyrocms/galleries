@@ -186,7 +186,7 @@ class Admin extends Admin_Controller
 			->title($this->module_details['name'], lang('galleries.new_gallery_label'))
 			->append_css('module::galleries.css')
 			->append_js('module::manage.js')
-			->append_metadata( $this->load->view('fragments/wysiwyg', $this->data, TRUE) )
+			->append_metadata( $this->load->view('fragments/wysiwyg', array(), TRUE) )
 			->set('gallery',		$gallery)
 			->set('folders_tree',	$folders_tree)
 			->set('thumbnails', 	array())
@@ -222,6 +222,7 @@ class Admin extends Admin_Controller
 		$galleries 		= $this->gallery_m->get_all();
 		$gallery 		= $this->gallery_m->get($id);
 		$gallery_images = $this->gallery_image_m->get_images_by_gallery($id);
+		
 		$thumbnails		= $this->gallery_image_m->where('gallery_images.gallery_id', $id)->dropdown('files.id', 'files.name');
 
 		if (empty($gallery))
@@ -263,7 +264,7 @@ class Admin extends Admin_Controller
 			->title($this->module_details['name'], sprintf(lang('galleries.manage_gallery_label'), $gallery->title))
 			->append_css('module::galleries.css')
 		  ->append_js('module::manage.js')
-			->append_metadata( $this->load->view('fragments/wysiwyg', $this->data, TRUE) )
+			->append_metadata( $this->load->view('fragments/wysiwyg', array(), TRUE) )
 			->set('gallery',		$gallery)
 			->set('galleries',		$galleries)
 			->set('gallery_images',	$gallery_images)

@@ -13,7 +13,7 @@
 class Gallery_m extends MY_Model {
 
 	public function tot_galleries(){
-	
+
 		return $this->db->count_all_results('galleries');
 	}
 
@@ -61,7 +61,7 @@ class Gallery_m extends MY_Model {
 	{
 		$this->db
 			->select('galleries.*, files.filename, files.extension, files.id as file_id, file_folders.parent_id as parent')
-			
+
 			->join('gallery_images', 'gallery_images.file_id = galleries.thumbnail_id', 'left')
 			->join('files', 'files.id = gallery_images.file_id', 'left')
 			->join('file_folders', 'file_folders.id = galleries.folder_id', 'left')
@@ -72,11 +72,11 @@ class Gallery_m extends MY_Model {
 		{
 			$this->db->where($where, $value);
 		}
-		
+
 		if( $num!=NULL or $offset!=NULL)
 		{
 			return $this->db->get('galleries',$num,$offset)->result();
-		}			
+		}
 
 		return $this->db->get('galleries')->result();
 	}
@@ -107,7 +107,7 @@ class Gallery_m extends MY_Model {
 			'title'				=> $input['title'],
 			'slug'				=> $input['slug'],
 			'folder_id'			=> $input['folder_id'],
-			'thumbnail_id'		=> ! empty($input['gallery_thumbnail']) ? (int) $input['gallery_thumbnail'] : NULL,
+			'thumbnail_id'		=> ! empty($input['gallery_thumbnail']) ? $input['gallery_thumbnail'] : NULL,
 			'description'		=> $input['description'],
 			'enable_comments'	=> $input['enable_comments'],
 			'published'			=> $input['published'],
@@ -134,7 +134,7 @@ class Gallery_m extends MY_Model {
 			'folder_id'			=> $input['folder_id'],
 			'description'		=> $input['description'],
 			'enable_comments'	=> $input['enable_comments'],
-			'thumbnail_id'		=> ! empty($input['gallery_thumbnail']) ? (int) $input['gallery_thumbnail'] : NULL,
+			'thumbnail_id'		=> ! empty($input['gallery_thumbnail']) ? $input['gallery_thumbnail'] : NULL,
 			'published'			=> $input['published'],
 			'updated_on'		=> time(),
 			'css'				=> $input['css'],

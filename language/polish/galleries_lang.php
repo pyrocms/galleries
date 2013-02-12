@@ -44,7 +44,7 @@ $lang['galleries.description_label']		= 'Opis galerii';
 $lang['galleries.thumbnail_label']		= 'Miniatura';
 $lang['galleries.comments_label']		= 'Włącz komentarze';
 $lang['galleries.published_label']		= 'Publiczna';
-$lang['galleries.current_label']			= 'Current Images (drag and drop to sort)'; #translate
+$lang['galleries.current_label']		= 'Aktualne zdjęcia (przeciągnij i upuść aby posortować)';
 
 // Sidebar labels
 $lang['galleries.list_label']			= 'Lista Galerii';

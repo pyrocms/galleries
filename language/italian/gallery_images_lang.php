@@ -1,14 +1,14 @@
 <?php
 // Success messages
-$lang['gallery_images.upload_success']		= 'The image has been uploaded successfully.'; #translate
-$lang['gallery_images.delete_success']		= 'The image has been deleted.'; #translate
-$lang['gallery_images.changes_success']	 	= 'The changes have been saved.'; #translate
+$lang['gallery_images.upload_success']  	= 'L\'immagine è stata caricata con successo.';
+$lang['gallery_images.delete_success']		= 'L\'immagine è stata cancellata correttamente.';
+$lang['gallery_images.changes_success']	 	= 'Le modifiche sono state salvate.';
 
 // Errors
-$lang['gallery_images.upload_error']		= 'The image could not be uploaded.'; #translate
-$lang['gallery_images.exists_error'] 		= 'The specified image does not exist.'; #translate
-$lang['gallery_images.delete_error']	 	= 'The image could not be deleted.'; #translate
-$lang['gallery_images.changes_error']		= 'Le modifiche non possono essere salvate.';
+$lang['gallery_images.upload_error']		= 'L\'immagine non può essere caricata.';
+$lang['gallery_images.exists_error'] 		= 'L\'immagine non esiste.';
+$lang['gallery_images.delete_error']	 	= 'L\'immagine non può essere cancellata.';
+$lang['gallery_images.changes_error']		= 'Le modifiche non sono state salvate.';
 
 // Labels
 $lang['gallery_images.upload_label']		= 'Carica immagine';

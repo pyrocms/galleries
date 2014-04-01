@@ -86,16 +86,16 @@ class Gallery_m extends MY_Model {
 	 *
 	 * @author PyroCMS Dev Team
 	 * @access public
-	 * @param array $input The data to insert (a copy of $_POST)
+	 * @param array $data The data to insert (a copy of $_POST)
 	 * @return bool
 	 */
-	public function insert($input)
+	public function insert($data, $skip_validation = false)
 	{
-		if (is_array($input['folder_id']))
+		if (is_array($data['folder_id']))
 		{
-			$folder = $input['folder_id'];
+			$folder = $data['folder_id'];
 
-			$input['folder_id'] = $this->file_folders_m->insert(array(
+			$data['folder_id'] = $this->file_folders_m->insert(array(
 				'name'			=> $folder['name'],
 				'parent_id'		=> 0,
 				'slug'			=> $folder['slug'],
@@ -104,16 +104,16 @@ class Gallery_m extends MY_Model {
 		}
 
 		return (int) parent::insert(array(
-			'title'				=> $input['title'],
-			'slug'				=> $input['slug'],
-			'folder_id'			=> $input['folder_id'],
-			'thumbnail_id'		=> ! empty($input['gallery_thumbnail']) ? $input['gallery_thumbnail'] : NULL,
-			'description'		=> $input['description'],
-			'enable_comments'	=> $input['enable_comments'],
-			'published'			=> $input['published'],
+			'title'				=> $data['title'],
+			'slug'				=> $data['slug'],
+			'folder_id'			=> $data['folder_id'],
+			'thumbnail_id'		=> ! empty($data['gallery_thumbnail']) ? $data['gallery_thumbnail'] : NULL,
+			'description'		=> $data['description'],
+			'enable_comments'	=> $data['enable_comments'],
+			'published'			=> $data['published'],
 			'updated_on'		=> time(),
-			'css'				=> $input['css'],
-			'js'				=> $input['js']
+			'css'				=> $data['css'],
+			'js'				=> $data['js']
 		));
 	}
 
@@ -123,22 +123,22 @@ class Gallery_m extends MY_Model {
 	 * @author PyroCMS Dev Team
 	 * @access public
 	 * @param int $id The ID of the row to update
-	 * @param array $input The data to use for updating the DB record
+	 * @param array $data The data to use for updating the DB record
 	 * @return bool
 	 */
-	public function update($id, $input)
+	public function update($primary_value, $data, $skip_validation = false)
 	{
         return parent::update($id, array(
-			'title'				=> $input['title'],
-			'slug'				=> $input['slug'],
-			'folder_id'			=> $input['folder_id'],
-			'description'		=> $input['description'],
-			'enable_comments'	=> $input['enable_comments'],
-			'thumbnail_id'		=> ! empty($input['gallery_thumbnail']) ? $input['gallery_thumbnail'] : NULL,
-			'published'			=> $input['published'],
+			'title'				=> $data['title'],
+			'slug'				=> $data['slug'],
+			'folder_id'			=> $data['folder_id'],
+			'description'		=> $data['description'],
+			'enable_comments'	=> $data['enable_comments'],
+			'thumbnail_id'		=> ! empty($data['gallery_thumbnail']) ? $data['gallery_thumbnail'] : NULL,
+			'published'			=> $data['published'],
 			'updated_on'		=> time(),
-			'css'				=> $input['css'],
-			'js'				=> $input['js']
+			'css'				=> $data['css'],
+			'js'				=> $data['js']
 		));
 	}
 

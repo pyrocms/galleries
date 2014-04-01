@@ -203,6 +203,32 @@ class Gallery_image_m extends MY_Model
 	 */
 	public function get($id)
 	{
+		
+		$query = ("
+			SELECT gi.*, files.name, files.filename, files.extension, files.description, files.name as title, galleries.folder_id, galleries.slug as gallery_slug
+			FROM default_gallery_images AS gi 
+			LEFT JOIN default_galleries AS galleries ON gi.gallery_id = galleries.id 
+			LEFT JOIN default_files AS files ON files.id = gi.file_id 
+			WHERE gi.id = ? 
+			OR gi.id = (SELECT MAX(id) FROM default_gallery_images WHERE id < ?) 
+			OR gi.id = (SELECT MIN(id) FROM default_gallery_images WHERE id > ?)
+		");
+
+		return $this->db->query($query, array($id, $id, $id));		
+		
+	}
+
+	/**
+	 * Get an image along with the gallery slug
+	 * 
+	 * @author PyroCMS Dev Team
+	 * @access public
+	 * @param int $id The ID of the image
+	 * @return mixed
+	 */
+	/*
+	public function get($id)
+	{
 		$query = $this->db
 			->select('gallery_images.*, files.name, files.filename, files.extension, files.description, files.name as title, galleries.folder_id, galleries.slug as gallery_slug')
 			->join('galleries', 'gallery_images.gallery_id = galleries.id', 'left')
@@ -219,6 +245,7 @@ class Gallery_image_m extends MY_Model
 			return FALSE;
 		}
 	}
+	*/
 	
 	/**
 	 * Dropdown
@@ -227,9 +254,12 @@ class Gallery_image_m extends MY_Model
 	 * @param string $value
 	 * @return mixed
 	 */
-	public function dropdown($key, $value)
+	public function dropdown()
 	{
 		$dropdown = array();
+
+		$key = 'files.id';
+		$value = 'files.name';
 
 		$query = $this->select(array($key, $value))
 			->join('files', 'files.id = gallery_images.file_id', 'left')

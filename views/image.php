@@ -1,15 +1,30 @@
-<h2 id="page_title"><?php echo $gallery_image->name; ?></h2>
+
+<h2 id="page_title">
+	<?php echo $current->name; ?>
+</h2>
+
 <!-- Div containing all galleries -->
 <div class="galleries_container" id="gallery_image">
-	<div class="gallery clearfix">
+	<?php if (! is_null($prev)) { ?>
+		<a href="<?php echo site_url('galleries/'.$gallery->slug.'/'.$prev->id); ?>" class="gallery-image" rel="gallery-image" data-src="<?php echo site_url('files/large/'.$prev->file_id); ?>" title="<?php echo $prev->name; ?>">
+			<strong> << </strong>
+		</a>
+	<?php } ?>
+	<?php if (! is_null($next)) { ?>
+		<a href="<?php echo site_url('galleries/'.$gallery->slug.'/'.$next->id); ?>" class="gallery-image" rel="gallery-image" data-src="<?php echo site_url('files/large/'.$next->file_id); ?>" title="<?php echo $next->name; ?>">
+			<strong> >> </strong>
+		</a>
+	<?php } ?>
+
+	<div class="gallery clearfix">		
 		<!-- Div containing the full sized image -->
 		<div class="gallery_image_full">
-			<img src="<?php echo site_url('files/large/'.$gallery_image->file_id); ?>" alt="<?php echo $gallery_image->name; ?>" />
+			<img src="<?php echo site_url('files/large/'.$current->file_id); ?>" alt="<?php echo $current->name; ?>" />
 		</div>
-		<?php if ( ! empty($gallery_image->description) ):?>
+		<?php if ( ! empty($current->description) ):?>
 		<!-- An image needs a description.. -->
 		<div class="gallery_image_description">
-			<p><?php echo $gallery_image->description; ?></p>
+			<p><?php echo $current->description; ?></p>
 		</div>
 		<?php endif; ?>
 	</div>

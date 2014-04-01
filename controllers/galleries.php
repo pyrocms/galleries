@@ -123,23 +123,57 @@ class Galleries extends Public_Controller
 		$gallery		= $this->gallery_m->get_by('slug', $gallery_slug);
 		$gallery_image	= $this->gallery_image_m->get($image_id);
 
+		if ($gallery_image) {
+
+			$num_rows = $gallery_image->num_rows();
+
+			$first = $gallery_image->first_row();
+
+			if($num_rows == 3){
+				$first = $gallery_image->first_row();
+				$current = $gallery_image->row(1);
+				$last = $gallery_image->last_row();
+			} 
+			elseif ($num_rows == 2) {				
+				if ($first->id == $image_id) {
+					$first = null;
+					$current = $gallery_image->row(0);
+					$last = $gallery_image->last_row();
+				}
+				else{
+					$first = $gallery_image->first_row();
+					$current = $gallery_image->row(1);
+					$last = null;
+				}			
+			}
+			else{
+				$first = null;
+				$current = $gallery_image->row(0);
+				$last = null;
+			}		
+		}
+
 		// Do the gallery and the image ID match?
-		if ( ! $gallery OR ($gallery->id != $gallery_image->gallery_id))
+		if ( ! $gallery OR ($gallery->id != $current->gallery_id))
 		{
 			show_404();
 		}
 		
-		 $this->load->library('comments/comments', array(
-				'entry_id' => $gallery_image->id,
+		$this->load->library('comments/comments', array(
+				'entry_id' => $current->id,
 				'entry_title' => $gallery->title,
 				'module' => 'galleries',
 				'singular' => 'gallery',
 				'plural' => 'galleries',
-			));
-		
-		$this->template->build('image', array(
-			'gallery'		=> $gallery,
-			'gallery_image'	=> $gallery_image
 		));
+		
+		$this->template->build(
+				'image', array(					
+					'gallery' => $gallery,
+					'prev' 	  => $first,
+					'current' => $current,
+					'next'	  => $last
+				)
+		);
 	}
 }

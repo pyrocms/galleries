@@ -176,6 +176,8 @@ class Admin extends Admin_Controller
 			}
 		}
 
+		$gallery = new stdClass();
+
 		// Required for validation
 		foreach ($this->gallery_validation_rules as $rule)
 		{
@@ -223,7 +225,7 @@ class Admin extends Admin_Controller
 		$gallery 		= $this->gallery_m->get($id);
 		$gallery_images = $this->gallery_image_m->get_images_by_gallery($id);
 		
-		$thumbnails		= $this->gallery_image_m->where('gallery_images.gallery_id', $id)->dropdown('files.id', 'files.name');
+		$thumbnails		= $this->gallery_image_m->where('gallery_images.gallery_id', $id)->dropdown();
 
 		if (empty($gallery))
 		{
@@ -281,10 +283,11 @@ class Admin extends Admin_Controller
 	 */
 	public function preview($id = 0)
 	{
-		$data->gallery  = $this->gallery_m->get($id);
+		$gallery  = $this->gallery_m->get($id);
 
 		$this->template->set_layout('modal', 'admin');
-		$this->template->build('admin/preview', $data);
+		$this->template->set('gallery', $gallery);
+		$this->template->build('admin/preview');
 	}
 
 	/**

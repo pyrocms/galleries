@@ -5,6 +5,7 @@
  * The galleries module enables users to create albums, upload photos and manage their existing albums.
  *
  * @author 		Yorick Peterse - PyroCMS Dev Team
+ * @author    Enliven Applications
  * @package 	PyroCMS
  * @subpackage 	Gallery Module
  * @category 	Modules
@@ -89,7 +90,7 @@ class Gallery_m extends MY_Model {
 	 * @param array $input The data to insert (a copy of $_POST)
 	 * @return bool
 	 */
-	public function insert($input)
+	public function insert($input, $skip_validation = false)
 	{
 		if (is_array($input['folder_id']))
 		{
@@ -126,7 +127,7 @@ class Gallery_m extends MY_Model {
 	 * @param array $input The data to use for updating the DB record
 	 * @return bool
 	 */
-	public function update($id, $input)
+	public function update($id, $input, $skip_validation = false)
 	{
         return parent::update($id, array(
 			'title'				=> $input['title'],

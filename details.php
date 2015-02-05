@@ -2,7 +2,7 @@
 
 class Module_Galleries extends Module {
 
-	public $version = '1.3';
+	public $version = '1.4';
 
 	public function info()
 	{

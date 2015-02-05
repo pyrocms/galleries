@@ -4,6 +4,7 @@
  * The galleries module enables users to create albums, upload photos and manage their existing albums.
  *
  * @author 		PyroCMS Dev Team
+ * @author    Enliven Applications
  * @package 	PyroCMS
  * @subpackage 	Gallery Module
  * @category 	Modules
@@ -227,7 +228,7 @@ class Gallery_image_m extends MY_Model
 	 * @param string $value
 	 * @return mixed
 	 */
-	public function dropdown($key, $value)
+	public function dropdown_gal($key, $value)
 	{
 		$dropdown = array();
 

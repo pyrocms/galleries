@@ -157,4 +157,63 @@ class Gallery_m extends MY_Model {
 		) > 0;
 	}
 
+	/**
+	 * Get all galleries by slug along with the total number of photos in each gallery
+	 *
+	 * @author Adam Riyadi
+	 * @access public
+	 * @return mixed
+	 */
+	public function get_all_by_slug($options)
+	{	
+		$slug = "";
+		if (isset($options['slug']))
+		{
+			$slug = $options['slug'];
+		}
+
+		if (isset($options['offset']))
+		{
+			$this->db->offset($options['offset']);
+		}
+
+		if (isset($options['limit']))
+		{
+			$this->db->limit($options['limit']);
+		}
+		$this->db
+			->select('galleries.*, file_folders.slug as folder_slug, file_folders.name as folder_name')
+			->where('galleries.slug LIKE \'%' . $slug . '%\'',null, false) 
+			->join('file_folders', 'file_folders.id = galleries.folder_id', 'left');
+
+		$galleries	= parent::get_all();
+		$results	= array();
+
+		// Loop through each gallery and add the count of photos to the results
+		$thumbnail = "";
+		foreach ($galleries as $gallery)
+		{
+			$file = $this->db
+				->select('files.id, files.path')
+				->join('galleries', 'galleries.folder_id = files.folder_id', 'left')
+				->where('files.type', 'i')
+				->where('galleries.id', $gallery->id)
+				->get('files',1)->row();
+
+			$count = $this->db
+				->select('files.id')
+				->join('galleries', 'galleries.folder_id = files.folder_id', 'left')
+				->where('files.type', 'i')
+				->where('galleries.id', $gallery->id)
+				->count_all_results('files');
+
+			$gallery->photo_count = $count;
+			$gallery->thumbnail = $file->path;
+			$gallery->url = '{{ url:base }}galleries/'.$gallery->slug;
+			$results[] = $gallery;
+		}
+
+		// Return the results
+		return $results;
+	}
 }

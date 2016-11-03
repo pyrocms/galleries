@@ -4,6 +4,7 @@
  * The galleries module enables users to create albums, upload photos and manage their existing albums.
  *
  * @author 		PyroCMS Dev Team
+ * @author    Enliven Applications
  * @package 	PyroCMS
  * @subpackage 	Gallery Module
  * @category 	Modules
@@ -144,6 +145,8 @@ class Admin extends Admin_Controller
 	 */
 	public function create()
 	{
+		$gallery = new StdClass;
+		
 		$file_folders = $this->file_folders_m->get_folders();
 		$folders_tree = array();
 		foreach ($file_folders as $folder)
@@ -223,7 +226,7 @@ class Admin extends Admin_Controller
 		$gallery 		= $this->gallery_m->get($id);
 		$gallery_images = $this->gallery_image_m->get_images_by_gallery($id);
 		
-		$thumbnails		= $this->gallery_image_m->where('gallery_images.gallery_id', $id)->dropdown('files.id', 'files.name');
+		$thumbnails		= $this->gallery_image_m->where('gallery_images.gallery_id', $id)->dropdown_gal('files.id', 'files.name');
 
 		if (empty($gallery))
 		{

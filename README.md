@@ -1,4 +1,4 @@
-# PyroCMS Gallery
+# [READ ONLY] PyroCMS Gallery
 
 * [Website](http://pyrocms.com/)
 * [Documentation](http://pyrocms.com/docs)
